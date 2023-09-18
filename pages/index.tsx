@@ -1,13 +1,19 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+// pages/index.tsx
+import React, { useState } from 'react';
+import CardGrid from '../components/CardGrid';
+import ExpandedCard from '../components/ExpandedCard';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-  </Layout>
-)
+const Home = () => {
+  const [selectedCard, setSelectedCard] = useState(null);
 
-export default IndexPage
+  return (
+    <div>
+      <CardGrid setSelectedCard={setSelectedCard} />
+      {selectedCard && (
+        <ExpandedCard data={selectedCard} setSelectedCard={setSelectedCard} />
+      )}
+    </div>
+  );
+};
+
+export default Home;

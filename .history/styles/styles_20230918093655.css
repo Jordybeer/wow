@@ -1,0 +1,62 @@
+/* styles/styles.css */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.card, .expanded-card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.expanded-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.slideshow {
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+
+.description {
+  padding: 16px;
+}
+
+/* styles/styles.css */
+/* ...existing styles */
+
+
+.top-half,
+.bottom-half {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel {
+  flex: 3;
+}
+
+.thumbnails {
+  flex: 1;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.thumbnails img {
+  margin: 0 5px;
+  cursor: pointer;
+}

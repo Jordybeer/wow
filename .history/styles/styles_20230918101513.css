@@ -1,0 +1,17 @@
+/* Slick Carousel Custom Styles */
+.slick-prev {
+  z-index: 1;
+  left: -40px;
+}
+
+.slick-next {
+  z-index: 1;
+  right: -40px;
+}
+
+/* Custom Thumbnail Styles */
+.thumbnail-img {
+  cursor: pointer;
+}
+
+/* If you have any other global styles or third-party customizations, add them here */

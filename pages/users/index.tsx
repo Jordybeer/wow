@@ -1,35 +1,36 @@
-import { GetStaticProps } from 'next'
-import Link from 'next/link'
-
-import { User } from '../../interfaces'
-import { sampleUserData } from '../../utils/sample-data'
-import Layout from '../../components/Layout'
-import List from '../../components/List'
+import React, { useState } from 'react';
+import { GetStaticProps } from 'next';
+import Layout from '../../components/Layout';
+import CardGrid from '../../components/CardGrid';  // <-- Import CardGrid
 
 type Props = {
-  items: User[]
-}
+  // Your existing props here, if any
+};
 
-const WithStaticProps = ({ items }: Props) => (
-  <Layout title="Users List | Next.js + TypeScript Example">
-    <h1>Users List</h1>
-    <p>
-      Example fetching data from inside <code>getStaticProps()</code>.
-    </p>
-    <p>You are currently on: /users</p>
-    <List items={items} />
-    <p>
-      <Link href="/">Go home</Link>
-    </p>
-  </Layout>
-)
+const WithStaticProps = (/* { items }: Props */) => {
+  const [selectedCard, setSelectedCard] = useState(null);  // <-- State for selected card
+
+  return (
+    <Layout title="Card Grid Example">
+      <h1>Card Grid</h1>
+      <p>
+        This is an example of a card grid implemented in Next.js and TypeScript.
+      </p>
+      <CardGrid setSelectedCard={setSelectedCard} />  {/* <-- Added CardGrid */}
+      {/* You can display the selected card details here, if you want */}
+      {selectedCard && (
+        <div>
+          <h2>Selected Card: {selectedCard.title}</h2>
+          <p>{selectedCard.description}</p>
+        </div>
+      )}
+    </Layout>
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
-  // Example for including static props in a Next.js function component page.
-  // Don't forget to include the respective types for any props passed into
-  // the component.
-  const items: User[] = sampleUserData
-  return { props: { items } }
-}
+  // Your existing getStaticProps logic here, if any
+  return { props: {} };
+};
 
-export default WithStaticProps
+export default WithStaticProps;
