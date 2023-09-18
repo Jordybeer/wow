@@ -65,7 +65,6 @@
 /* Carousel Styles */
 .carousel-img {
   max-width: 100%;
-  width: 100%;
   height: auto;
 }
 
@@ -75,13 +74,11 @@
   height: auto;
 }
 .thumbnails {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  height: 100px;
+  overflow-y: auto;
 }
 
-.
+
 /* Top and Bottom Half */
 .top-half {
   height: 40%;

@@ -3,6 +3,9 @@ import Slider from 'react-slick';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box, Divider } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import Image from 'next/image';
+import  Carousel  from './Carousel'
+
 
 const ExpandedCard = ({ data, setSelectedCard }) => {
   const cardRef = useRef(null);
@@ -47,8 +50,7 @@ const ExpandedCard = ({ data, setSelectedCard }) => {
   const handleNextClick = () => {
     sliderRef.current.slickNext();
   };
-
-  return (
+return (
     <AnimatePresence>
       {data && (
         <motion.div
@@ -61,26 +63,7 @@ const ExpandedCard = ({ data, setSelectedCard }) => {
         >
           <Box className="content-box">
             <div className="top-half">
-              <Slider ref={sliderRef} {...settings}>
-                {data.images.map((img, index) => (
-                  <div key={index}>
-                    <img src={img} alt={`Slide ${index + 1}`} className="carousel-img" />
-                  </div>
-                ))}
-              </Slider>
-              <div className="thumbnails">
-                <ChevronLeftIcon boxSize={6} onClick={handlePrevClick} />
-                {data.images.map((img, index) => (
-                  <img
-                    key={index}
-                    src={img}
-                    alt={`Thumbnail ${index + 1}`}
-                    className="thumbnail-img"
-                    onClick={() => sliderRef.current.slickGoTo(index)}
-                  />
-                ))}
-                <ChevronRightIcon boxSize={6} onClick={handleNextClick} />
-              </div>
+              <Carousel images={data.images} />
             </div>
             <Divider orientation="horizontal" />
             <div className="bottom-half">
@@ -93,5 +76,4 @@ const ExpandedCard = ({ data, setSelectedCard }) => {
     </AnimatePresence>
   );
 };
-
 export default ExpandedCard;

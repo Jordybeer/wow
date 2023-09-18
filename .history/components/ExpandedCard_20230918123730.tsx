@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box, Divider } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import Image from 'next/image '
 
 const ExpandedCard = ({ data, setSelectedCard }) => {
   const cardRef = useRef(null);

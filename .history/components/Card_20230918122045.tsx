@@ -15,4 +15,4 @@ const Card = ({ data, setSelectedCard }) => {
   );
 };
 
-export default Card;  
+export default Card;
