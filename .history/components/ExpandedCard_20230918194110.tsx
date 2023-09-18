@@ -42,10 +42,9 @@ const handleClickOutside = (e) => {
           className="expanded-card"
           ref={cardRef}
           style={{ backgroundColor: 'rgba(173, 216, 230, 0.7)' }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}  // <-- Add this line for fade-out
-      transition={{ duration: 1 }}  // <-- You can adjust the duration
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <Box className="content-box">
             <div className="top-half">

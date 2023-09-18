@@ -6,7 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 const CardGrid = ({ setSelectedCard }) => {
-  
+   const [index, setIndex] = useState(false);
+  const handleClose = useCallback(() => {
+    setIndex(false);
+  }, []);
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -50,9 +54,26 @@ const CardGrid = ({ setSelectedCard }) => {
 
   return (
     <div className="grid">
-      {data.map((item, index) => (
-        <Card key={index} data={item} setSelectedCard={setSelectedCard} />
+      <ul>
+      {data.map((item, idx) => (
+        <motion.li
+          key={idx}
+          layoutId={`${item.id}`}
+          onClick={() => index === false && setIndex(item.title)}
+          initial={{ borderRadius: "0.6rem" }}
+        >
+          <Card data={item} setSelectedCard={setSelectedCard} />
+        </motion.li>
       ))}
+      </ul>
+ <AnimatePresence>
+        {index !== false && (
+          <div>
+            {/* Your modal or expanded view code here */}
+            {null}
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

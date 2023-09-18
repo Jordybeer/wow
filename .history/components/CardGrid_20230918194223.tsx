@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 const CardGrid = ({ setSelectedCard }) => {
-  
   const [data, setData] = useState([]);
 
   useEffect(() => {

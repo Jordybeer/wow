@@ -6,7 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 const CardGrid = ({ setSelectedCard }) => {
-  
+   const [index, setIndex] = useState(false);
+  const handleClose = useCallback(() => {
+    setIndex(false);
+  }, []);
+
   const [data, setData] = useState([]);
 
   useEffect(() => {

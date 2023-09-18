@@ -1,13 +1,15 @@
-// components/CardGrid.tsx
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, Dispatch } from 'react';
 import Card from './Card';
 import { LoremIpsum } from 'lorem-ipsum';
 import { motion, AnimatePresence } from 'framer-motion';
+import ExpandedCard from './ExpandedCard';
 
+interface CardGridProps {
+  data: any;
+  setSelectedCard: Dispatch<any>;
+}
 
-const CardGrid = ({ setSelectedCard }) => {
-  
-  const [data, setData] = useState([]);
+const CardGrid: React.FC<CardGridProps> = ({ data, setSelectedCard }) => {
 
   useEffect(() => {
     const lorem = new LoremIpsum({
@@ -45,14 +47,26 @@ const CardGrid = ({ setSelectedCard }) => {
       // ... you can add more data here
     ];
 
-    setData(generatedData);
   }, []);
+  const [index, setIndex] = useState(null);
 
   return (
     <div className="grid">
-      {data.map((item, index) => (
-        <Card key={index} data={item} setSelectedCard={setSelectedCard} />
-      ))}
+      <ul>
+  {data.map((item, idx) => (
+     <motion.li
+      key={idx}
+      layoutId={`${item.id}`}
+onClick={() => index === null && setIndex(item.title)}
+      initial={{ borderRadius: "0.6rem" }}
+    >
+      <Card data={item} setSelectedCard={setSelectedCard} />
+    </motion.li>
+        ))}
+      </ul>
+      <AnimatePresence>
+        {setSelectedCard && <ExpandedCard data={setSelectedCard} setSelectedCard={setSelectedCard} />}
+      </AnimatePresence>
     </div>
   );
 };

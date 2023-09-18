@@ -1,16 +1,17 @@
+// components/Card.tsx
 import { motion } from 'framer-motion';
 
 const Card = ({ data, setSelectedCard }) => {
   return (
+    
     <motion.div
+      layoutId={`${data.id}`}
       className="card"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      onClick={() => setSelectedCard(data)}
+      onClick={() => setSelectedCard(data.id)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}  // <-- Add this line for fade-out
-      transition={{ duration: 0.5 }}  // <-- You can adjust the duration
     >
       <img src={data.img} alt={data.title} />
       <h3>{data.title}</h3>
@@ -18,5 +19,4 @@ const Card = ({ data, setSelectedCard }) => {
   );
 };
 
-
-export default Card;
+export default Card;  

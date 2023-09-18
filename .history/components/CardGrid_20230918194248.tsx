@@ -1,12 +1,11 @@
 // components/CardGrid.tsx
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, } from 'react';
 import Card from './Card';
 import { LoremIpsum } from 'lorem-ipsum';
 import { motion, AnimatePresence } from 'framer-motion';
 
 
 const CardGrid = ({ setSelectedCard }) => {
-  
   const [data, setData] = useState([]);
 
   useEffect(() => {

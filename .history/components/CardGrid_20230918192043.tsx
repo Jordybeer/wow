@@ -1,13 +1,12 @@
-// components/CardGrid.tsx
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import { LoremIpsum } from 'lorem-ipsum';
 import { motion, AnimatePresence } from 'framer-motion';
+import ExpandedCard from './ExpandedCard';
 
-
-const CardGrid = ({ setSelectedCard }) => {
-  
+const CardGrid = () => {
   const [data, setData] = useState([]);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   useEffect(() => {
     const lorem = new LoremIpsum({
@@ -47,12 +46,22 @@ const CardGrid = ({ setSelectedCard }) => {
 
     setData(generatedData);
   }, []);
-
   return (
     <div className="grid">
-      {data.map((item, index) => (
-        <Card key={index} data={item} setSelectedCard={setSelectedCard} />
-      ))}
+      <ul>
+        {data.map((item, idx) => (
+          <motion.li
+            key={idx}
+            layoutId={`${item.id}`}
+            initial={{ borderRadius: "0.6rem" }}
+          >
+            <Card data={item} setSelectedCard={setSelectedCard} />
+          </motion.li>
+        ))}
+      </ul>
+      <AnimatePresence>
+        {selectedCard && <ExpandedCard data={selectedCard} setSelectedCard={setSelectedCard} />}
+      </AnimatePresence>
     </div>
   );
 };

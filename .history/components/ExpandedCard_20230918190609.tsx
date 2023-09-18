@@ -8,12 +8,11 @@ const ExpandedCard = ({ data, setSelectedCard }) => {
   const cardRef = useRef(null);
   const sliderRef = useRef(null);
 
-const handleClickOutside = (e) => {
-  if (cardRef.current && !cardRef.current.contains(e.target)) {
-    setSelectedCard(null);
-  }
-};
-
+  const handleClickOutside = (e) => {
+    if (cardRef.current && !cardRef.current.contains(e.target)) {
+      setSelectedCard(null);
+    }
+  };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -23,7 +22,22 @@ const handleClickOutside = (e) => {
   }, []);
 
   const settings = {
-    // Your existing settings
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+    centerMode: true,
+    draggable: true,
+    pauseOnHover: true,
+    swipeToSlide: true,
+    // useCSS: true,
+    variableWidth: true,
+    // className: 'carousel-img',
+    swipe: true,
+    
   };
 
   const handlePrevClick = () => {
@@ -38,19 +52,16 @@ const handleClickOutside = (e) => {
     <AnimatePresence>
       {data && (
         <motion.div
-          layoutId={`${data.id}`}
+        layoutId={`${data.id}`}
           className="expanded-card"
           ref={cardRef}
           style={{ backgroundColor: 'rgba(173, 216, 230, 0.7)' }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}  // <-- Add this line for fade-out
-      transition={{ duration: 1 }}  // <-- You can adjust the duration
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <Box className="content-box">
             <div className="top-half">
-              <button onClick={() => setSelectedCard(null)}>Close</button>
-
               <Slider ref={sliderRef} {...settings}>
                 {data.images.map((img, index) => (
                   <div key={index}>
